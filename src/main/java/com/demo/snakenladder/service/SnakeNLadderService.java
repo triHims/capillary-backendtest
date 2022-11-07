@@ -41,7 +41,7 @@ public class SnakeNLadderService {
 	public boolean resetPlayer(String playerId) {
 		
 		Optional<PlayerObj> returnObj =  snakeNLadderRepo.getByPlayerName(playerId);
-		if(returnObj.isEmpty())
+		if(!returnObj.isPresent())
 			return false;
 		
 		PlayerObj obj = returnObj.get();

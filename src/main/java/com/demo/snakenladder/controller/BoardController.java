@@ -45,15 +45,15 @@ public class BoardController{
 				String response;
 				if(position == 100)
 				{
-					response= "%s wins".formatted(playerId);
+					response= String.format("%s wins",playerId);
 				}else {
-					response = "next_position: %d".formatted(position);
+					response = String.format("next_position: %d", position);
 				}
 				
 				 
 				return ResponseEntity.ok(response);
 			} catch(NumberFormatException ex) {
-				String response = "The body : %s \n Is Invalid".formatted(body);
+				String response = String.format("The body : %s \n Is Invalid",body);
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
 			}
 		}

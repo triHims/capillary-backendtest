@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.demo.snakenladder.Entity.PlayerObj;
 import com.demo.snakenladder.service.SnakeNLadderService;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 @RestController
 @RequestMapping("snakeNladder")
 public class BoardController{
@@ -27,7 +29,10 @@ public class BoardController{
 		return ResponseEntity.ok(snakeNLadderService.getPlayerDetails(playerId.toLowerCase()));
 	}
 	@PostMapping(value="/{playerId}")
+	@Operation(summary = "Player id = {player1,player2} , valid body = {START,[anynumber]}")
 	public ResponseEntity<String> commandFn(@PathVariable("playerId") String playerId, @RequestBody String body){
+		body = body.replaceAll("\"", "");
+		
 		if("START".compareTo(body)==0) {
 			return snakeNLadderService.resetPlayer(playerId.toLowerCase())==true?
 					ResponseEntity.ok("READY"):ResponseEntity

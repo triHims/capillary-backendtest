@@ -57,7 +57,7 @@ public class SnakeNLadderService {
 			fillMappers();			
 		}
 		Optional<PlayerObj> returnObj =  snakeNLadderRepo.getByPlayerName(playerId);
-		if(returnObj.isEmpty())
+		if(!returnObj.isPresent())
 			throw new RuntimeException("Player Not found");
 		
 		PlayerObj obj = returnObj.get();
